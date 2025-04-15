@@ -1,0 +1,56 @@
+Algorithm:
+Initialize two pointers:
+
+left at the start (index 0)
+
+right at the end (index n - 1)
+
+While left < right:
+
+Calculate the sum of arr[left] + arr[right].
+
+If sum == target:  Found, return indices or values.
+
+If sum < target: Move left forward (to increase sum).
+
+If sum > target: Move right backward (to decrease sum).
+
+If no pair found, return null or an empty array
+
+CODE:
+public class TwoSumSortedArray {
+
+    public static int[] findTwoSum(int[] nums, int target) {
+        int left = 0;
+        int right = nums.length - 1;
+
+        while (left < right) {
+            int sum = nums[left] + nums[right];
+
+            if (sum == target) {
+                return new int[] {left + 1, right + 1};
+            } else if (sum < target) {
+                left++;
+            } else {
+                right--;
+            }
+        }
+
+        return new int[] {}; 
+    }
+
+    public static void main(String[] args) {
+        int[] arr = {2, 7, 11, 15};
+        int target = 9;
+
+        int[] result = findTwoSum(arr, target);
+        if (result.length == 2) {
+            System.out.println("Indices: " + result[0] + " and " + result[1]);
+        } else {
+            System.out.println("No pair found.");
+        }
+    }
+}
+
+Time Complexity	O(n)
+Space Complexity	O(1) 
