@@ -1,0 +1,48 @@
+Algorithm:
+Compute the sum of the first K elements.
+
+Iterate through the array from index K to the end:
+
+For each index i, update the sum by subtracting the element that is sliding out of the window and adding the new element that is entering the window.
+
+Update the maximum sum after each window shift.
+
+After iterating through the array, the result will be the maximum sum of any subarray of size K.
+
+CODE:
+public class MaxSumSubarray {
+
+   
+    public static int findMaxSumSubarray(int[] arr, int K) {
+        
+        if (arr.length < K) {
+            System.out.println("Array size is smaller than the subarray size.");
+            return -1;
+        }
+        
+        int maxSum = 0;
+        for (int i = 0; i < K; i++) {
+            maxSum += arr[i];
+        }
+    
+        int windowSum = maxSum;
+        
+       
+        for (int i = K; i < arr.length; i++) {
+            
+            windowSum = windowSum - arr[i - K] + arr[i];
+      
+            maxSum = Math.max(maxSum, windowSum);
+        }
+        
+        return maxSum;
+    }
+
+    public static void main(String[] args) {
+        
+        int[] arr1 = {2, 1, 5, 1, 3, 2};
+        int K1 = 3;
+        System.out.println("Maximum sum of subarray of size " + K1 + ": " + findMaxSumSubarray(arr1, K1));
+
+    }
+}
