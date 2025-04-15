@@ -1,0 +1,78 @@
+Algorithm:
+Edge Case Handling: If the list is empty or n is greater than the length of the list, return null.
+
+Step 1: Initialize fast and slow pointers to the head of the list.
+
+Step 2: Move the fast pointer n steps ahead.
+
+Step 3: Move both fast and slow pointers one step at a time until fast reaches the end of the list.
+
+Step 4: Adjust the next pointer of the slow pointer to remove the n-th node from the end.
+
+Return the modified list.
+
+CODE:
+class ListNode {
+    int val;
+    ListNode next;
+    ListNode(int x) { val = x; }
+}
+
+public class RemoveNthFromEnd {
+   
+    public ListNode removeNthFromEnd(ListNode head, int n) {
+        ListNode dummy = new ListNode(0);
+        dummy.next = head;
+        
+        ListNode fast = dummy;
+        ListNode slow = dummy;
+        
+      
+        for (int i = 1; i <= n + 1; i++) {
+            fast = fast.next;
+        }
+        
+      
+        while (fast != null) {
+            fast = fast.next;
+            slow = slow.next;
+        }
+        
+        slow.next = slow.next.next;
+        
+       
+        return dummy.next;
+    }
+
+    public void printList(ListNode head) {
+        while (head != null) {
+            System.out.print(head.val + " ");
+            head = head.next;
+        }
+        System.out.println();
+    }
+
+    public static void main(String[] args) {
+        
+        ListNode head = new ListNode(1);
+        head.next = new ListNode(2);
+        head.next.next = new ListNode(3);
+        head.next.next.next = new ListNode(4);
+        head.next.next.next.next = new ListNode(5);
+        
+        RemoveNthFromEnd solver = new RemoveNthFromEnd();
+        
+        System.out.print("Original List: ");
+        solver.printList(head);
+        
+        int n = 2;  
+        head = solver.removeNthFromEnd(head, n);
+        
+        System.out.print("List After Removal: ");
+        solver.printList(head);
+    }
+}
+
+
+Time Complexity	O(L)
+Space Complexity	O(1)
