@@ -1,0 +1,70 @@
+Algorithm:
+Convert each number into its 32-bit binary representation (assuming 32-bit integers).
+
+Insert the binary representation of each number into a trie.
+
+For each number, try to find the best number in the trie that maximizes the XOR value by traversing the trie from the most significant bit to the least significant bit.
+
+Keep track of the maximum XOR found.
+
+class TrieNode {
+    TrieNode[] children = new TrieNode[2];
+}
+
+public class MaximumXOR {
+    
+    
+    private void insert(TrieNode root, int num) {
+        TrieNode node = root;
+        for (int i = 31; i >= 0; i--) {
+            int bit = (num >> i) & 1;
+            if (node.children[bit] == null) {
+                node.children[bit] = new TrieNode();
+            }
+            node = node.children[bit];
+        }
+    }
+
+   
+    private int findMaxXOR(TrieNode root, int num) {
+        TrieNode node = root;
+        int maxXOR = 0;
+        for (int i = 31; i >= 0; i--) {
+            int bit = (num >> i) & 1;
+      
+            int oppositeBit = 1 - bit;
+            if (node.children[oppositeBit] != null) {
+                maxXOR |= (1 << i); // Set the current bit in the result
+                node = node.children[oppositeBit];
+            } else {
+                node = node.children[bit];
+            }
+        }
+        return maxXOR;
+    }
+
+    
+    public int findMaximumXOR(int[] nums) {
+        TrieNode root = new TrieNode();
+        int maxXOR = 0;
+
+        for (int num : nums) {
+            insert(root, num);
+        }
+
+        for (int num : nums) {
+            maxXOR = Math.max(maxXOR, findMaxXOR(root, num));
+        }
+
+        return maxXOR;
+    }
+
+    public static void main(String[] args) {
+        MaximumXOR solver = new MaximumXOR();
+        
+        int[] nums = {3, 10, 5, 25, 2, 8};
+        int result = solver.findMaximumXOR(nums);
+        
+        System.out.println("Maximum XOR of two numbers in the array: " + result);  // Output: 28
+    }
+}
