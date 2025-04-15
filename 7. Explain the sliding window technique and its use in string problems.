@@ -1,0 +1,31 @@
+Sliding Window Technique
+The sliding window technique is an efficient method used to solve problems involving contiguous subarrays or substrings by maintaining a "window" of elements. This window can either have a fixed size or variable size depending on the problem.
+
+Key Idea:
+Two pointers (start and end) are used to represent a "window" within the array or string.
+
+Expand the window by moving the end pointer and including new elements.
+
+Contract the window by moving the start pointer to remove elements when certain conditions are violated (e.g., duplicate characters or sum exceeding a target).
+
+The goal is to explore different subarrays/substrings while maintaining a manageable time complexity.
+
+Common Uses in String Problems:
+Longest Substring Without Repeating Characters:
+
+Track the longest substring with unique characters using a sliding window with two pointers.
+
+Smallest Substring Containing All Characters of Another String:
+
+Expand and contract the window to find the smallest substring of s that contains all characters of t.
+
+Example Problem: Longest Substring Without Repeating Characters
+Given a string, find the length of the longest substring without repeating characters using the sliding window technique.
+
+Time Complexity: O(n)
+Each element is added and removed from the window at most once.
+
+Space Complexity: O(m)
+For storing characters in a hash map or set, where m is the size of the character set.
+
+The sliding window technique is highly efficient for problems involving contiguous subarrays/substrings,
