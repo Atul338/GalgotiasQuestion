@@ -1,0 +1,52 @@
+Algorithm:
+Initialize two pointers start and end to 0, and an empty hash set to store the characters in the current window.
+
+Iterate through the string using the end pointer:
+
+If the character at end is not in the hash set, add it to the set.
+
+Update the length of the current window as end - start + 1 and update the maximum length.
+
+If the character at end is already in the hash set, move the start pointer to the right until the character is removed from the set.
+
+Return the maximum length.
+
+CODE:
+import java.util.HashSet;
+
+public class LongestSubstring {
+
+    
+    public static int lengthOfLongestSubstring(String s) {
+       
+        HashSet<Character> set = new HashSet<>();
+        int start = 0, maxLength = 0;
+
+        
+        for (int end = 0; end < s.length(); end++) {
+           
+            while (set.contains(s.charAt(end))) {
+                set.remove(s.charAt(start));
+                start++;
+            }
+            
+            set.add(s.charAt(end));
+
+           
+            maxLength = Math.max(maxLength, end - start + 1);
+        }
+        return maxLength;
+    }
+
+    public static void main(String[] args) {
+        
+        String str1 = "abcabcbb";
+        System.out.println("Length of longest substring: " + lengthOfLongestSubstring(str1));
+
+        
+    }
+}
+
+
+Time Complexity: O(n)
+Space Complexity: O(min(n, m))
