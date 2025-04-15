@@ -1,0 +1,30 @@
+A linked list is a linear data structure where each element, called a node, contains:
+
+Data: The value stored in the node.
+
+Next: A reference to the next node in the sequence.
+
+Types of linked lists:
+
+Singly Linked List: Each node points to the next node.
+
+Doubly Linked List: Each node points to both the next and previous nodes.
+
+Circular Linked List: The last node points back to the first node.
+
+Applications in Algorithm Design:
+Dynamic Memory Allocation: Linked lists grow and shrink dynamically, unlike arrays, which have a fixed size.
+
+Stacks and Queues: Linked lists are used to efficiently implement these data structures for algorithms like DFS (stack) and BFS (queue).
+
+Polynomial Representation: Linked lists are used to represent polynomials where each node stores a coefficient and exponent.
+
+Sparse Matrices: Efficiently stores non-zero elements of a matrix, saving memory.
+
+Undo Operations: Many applications, like text editors, use linked lists to implement undo functionality.
+
+Graph Representation: Used in adjacency lists to represent graphs.
+
+Circular Lists: Used in round-robin scheduling or music players where the list loops back to the start.
+
+Linked lists offer efficient memory usage and allow fast insertions and deletions but have slower access times compared to arrays. They are useful in dynamic and memory-intensive applications.
