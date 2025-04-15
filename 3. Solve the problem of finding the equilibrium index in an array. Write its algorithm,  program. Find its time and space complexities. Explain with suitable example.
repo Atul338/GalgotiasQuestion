@@ -1,0 +1,54 @@
+Algorithm in Steps:
+Calculate totalSum of the array.
+
+Initialize leftSum = 0.
+
+Iterate through the array. For each index i:
+
+Calculate rightSum = totalSum - leftSum - arr[i].
+
+If leftSum == rightSum, return index i as the equilibrium index.
+
+Otherwise, update leftSum = leftSum + arr[i] and continue.
+
+CODE:
+public class EquilibriumIndex {
+    public static int findEquilibriumIndex(int[] arr) {
+        int totalSum = 0;
+        int leftSum = 0;
+        
+        for (int i = 0; i < arr.length; i++) {
+            totalSum += arr[i];
+        }
+
+        for (int i = 0; i < arr.length; i++) {
+            int rightSum = totalSum - leftSum - arr[i];
+            
+            
+            if (leftSum == rightSum) {
+                return i; 
+            }
+            
+            
+            leftSum += arr[i];
+        }
+
+
+        return -1;
+    }
+
+    public static void main(String[] args) {
+       
+        int[] arr = {1, 3, 5, 2, 2};
+        int result = findEquilibriumIndex(arr);
+        if (result != -1) {
+            System.out.println("Equilibrium index found at: " + result);
+        } else {
+            System.out.println("No equilibrium index found.");
+        }
+
+
+Time Complexity: O(n)
+
+Space Complexity: O(1)
+       
