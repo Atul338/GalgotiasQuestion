@@ -1,0 +1,52 @@
+Algorithm :
+Initialize an empty stack stack and a variable maxArea to store the largest area found.
+
+Traverse the histogram from index 0 to n-1:
+
+While the stack is not empty and the height of the current bar is smaller than the height of the bar indexed at the top of the stack:
+
+Pop the stack and calculate the area with the popped bar as the shortest.
+
+Update maxArea if the calculated area is larger.
+
+Push the current index onto the stack.
+
+After the loop, repeat the popping process for the remaining indices in the stack.
+
+Return the maxArea as the largest rectangle area.
+
+CODE:
+import java.util.Stack;
+
+public class LargestRectangleInHistogram {
+
+    public static int largestRectangleArea(int[] heights) {
+        int n = heights.length;
+        Stack<Integer> stack = new Stack<>();
+        int maxArea = 0;
+
+        for (int i = 0; i < n; i++) {
+          
+            while (!stack.isEmpty() && heights[stack.peek()] > heights[i]) {
+                int h = heights[stack.pop()]; // Pop the top index
+                int w = stack.isEmpty() ? i : i - stack.peek() - 1; // Calculate the width
+                maxArea = Math.max(maxArea, h * w); // Calculate the area and update maxArea
+            }
+            stack.push(i); // Push the current index onto the stack
+        }
+
+        
+        while (!stack.isEmpty()) {
+            int h = heights[stack.pop()];
+            int w = stack.isEmpty() ? n : n - stack.peek() - 1;
+            maxArea = Math.max(maxArea, h * w);
+        }
+
+        return maxArea;
+    }
+
+    public static void main(String[] args) {
+        int[] heights = {2, 1, 5, 6, 2, 3};
+        System.out.println("Largest rectangle area: " + largestRectangleArea(heights));
+    }
+}
