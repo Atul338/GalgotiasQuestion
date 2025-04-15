@@ -1,0 +1,65 @@
+Algorithm Steps:
+Edge Case Handling:
+
+If the integer is negative, return False (since a negative number cannot be a palindrome due to the negative sign).
+
+If the integer is less than 10, return True (since single-digit numbers are always palindromes).
+
+If the integer ends with 0 but is not equal to 0, return False (since numbers like 10, 100, etc., cannot be palindromes).
+
+Reverse the second half of the digits:
+
+Initialize a variable reversedHalf to 0.
+
+Use a loop to reverse the last half of the digits. In each iteration:
+
+Add the last digit of n to reversedHalf.
+
+Remove the last digit of n by dividing n by 10.
+
+Comparison:
+
+Once the loop ends, reversedHalf holds the reversed second half of the number.
+
+If the number has an odd number of digits, ignore the middle digit by dividing reversedHalf by 10.
+
+If n equals reversedHalf, the number is a palindrome.
+
+Return the result:
+
+Return True if the number is a palindrome, otherwise return False.
+
+CODE:
+public class PalindromeChecker {
+
+    public static boolean isPalindrome(int n) {
+       
+        if (n < 0 || (n % 10 == 0 && n != 0)) {
+            return false;
+        }
+
+        int reversedHalf = 0;
+
+       
+        while (n > reversedHalf) {
+            reversedHalf = reversedHalf * 10 + n % 10;  // Get last digit and add it to reversedHalf
+            n /= 10;  // Remove last digit from n
+        }
+        return n == reversedHalf || n == reversedHalf / 10;
+    }
+
+    public static void main(String[] args) {
+        int number = 121;
+        if (isPalindrome(number)) {
+            System.out.println(number + " is a palindrome.");
+        } else {
+            System.out.println(number + " is not a palindrome.");
+        }
+
+    }
+}
+
+
+Time Complexity: O(log n)
+
+Space Complexity: O(1)
