@@ -1,0 +1,49 @@
+Algorithm
+The algorithm can be summarized as:
+
+Base Case: If n = 0, there are no numbers (return 1 as the empty set).
+
+Base Case: If n = 1, there are 10 possible numbers (digits 0 to 9).
+
+For n >= 2, calculate the number of valid numbers by multiplying the available choices:
+
+For the first digit: 9 choices (1 to 9).
+
+For the second digit: 9 choices (since 0 is allowed but not the first digit).
+
+For the third digit: 8 choices (excluding the first and second digits), and so on.
+
+The total number of valid numbers is the sum of valid numbers with 1 digit, 2 digits, ..., up to n digits.
+
+
+CODE:
+public class UniqueDigitNumbers {
+
+    public int countNumbersWithUniqueDigits(int n) {
+        if (n == 0) return 1; 
+        if (n == 1) return 10;
+
+        int result = 10;  
+        int product = 9; 
+
+        for (int i = 2; i <= n; i++) {
+            product *= (11 - i);  
+            result += product;  
+        }
+
+        return result;
+    }
+
+    public static void main(String[] args) {
+        UniqueDigitNumbers solver = new UniqueDigitNumbers();
+        int n = 3;  
+        int result = solver.countNumbersWithUniqueDigits(n);
+        System.out.println("Number of " + n + "-digit numbers with unique digits: " + result); 
+    }
+}
+
+
+
+
+Time	O(n)
+Space	O(1)
