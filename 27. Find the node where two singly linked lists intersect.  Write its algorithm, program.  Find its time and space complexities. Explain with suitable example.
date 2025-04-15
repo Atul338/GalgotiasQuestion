@@ -1,0 +1,94 @@
+Algorithm:
+Calculate the lengths of both linked lists.
+
+Align the longer list's pointer by moving it forward by the length difference.
+
+Traverse both lists simultaneously, comparing nodes at each step.
+
+If the nodes are the same, return that node (intersection point).
+
+If there’s no intersection, return null
+
+CODE:
+class ListNode {
+    int val;
+    ListNode next;
+    ListNode(int x) { val = x; }
+}
+
+public class IntersectionOfLinkedLists {
+    
+  
+    private int getLength(ListNode head) {
+        int length = 0;
+        while (head != null) {
+            length++;
+            head = head.next;
+        }
+        return length;
+    }
+
+   
+    public ListNode getIntersectionNode(ListNode headA, ListNode headB) {
+        // Get the lengths of both linked lists
+        int lenA = getLength(headA);
+        int lenB = getLength(headB);
+        
+        // Align the starting points
+        ListNode ptrA = headA;
+        ListNode ptrB = headB;
+        
+        if (lenA > lenB) {
+            for (int i = 0; i < lenA - lenB; i++) {
+                ptrA = ptrA.next;
+            }
+        } else {
+            for (int i = 0; i < lenB - lenA; i++) {
+                ptrB = ptrB.next;
+            }
+        }
+        
+  
+        while (ptrA != null && ptrB != null) {
+            if (ptrA == ptrB) {
+                return ptrA;  
+            }
+            ptrA = ptrA.next;
+            ptrB = ptrB.next;
+        }
+        
+        return null;  
+    }
+
+   
+    public void printList(ListNode head) {
+        while (head != null) {
+            System.out.print(head.val + " ");
+            head = head.next;
+        }
+        System.out.println();
+    }
+
+    public static void main(String[] args) {
+      
+        ListNode headA = new ListNode(1);
+        headA.next = new ListNode(2);
+        headA.next.next = new ListNode(3);
+        headA.next.next.next = new ListNode(4);
+        headA.next.next.next.next = new ListNode(5);
+        
+        ListNode headB = new ListNode(9);
+        headB.next = new ListNode(8);
+        headB.next.next = headA.next.next.next; // Intersection at node with value 4
+        
+        IntersectionOfLinkedLists solver = new IntersectionOfLinkedLists();
+        
+        ListNode intersectionNode = solver.getIntersectionNode(headA, headB);
+        
+        if (intersectionNode != null) {
+            System.out.println("Intersection at node with value: " + intersectionNode.val);
+        } else {
+            System.out.println("No intersection");
+        }
+    }
+}
