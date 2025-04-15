@@ -1,0 +1,44 @@
+The Sliding Window Technique is an optimization method used to solve problems that involve finding a subarray or substring within a larger array or string. It works by maintaining a subset of elements ("window") and sliding it across the data structure. The window can be either of fixed size or variable size, and the goal is to adjust the window to solve the problem efficiently without having to re-examine the entire array.
+
+How It Works:
+Start with a window: Initialize the window at the beginning of the array.
+
+Expand or contract the window: Move the right (or left) pointer to adjust the window based on the problem’s conditions.
+
+Update the result: Keep track of the desired value (e.g., sum, length, etc.) as the window slides.
+
+Applications in Array Problems:
+Maximum Sum Subarray of Size k:
+
+Find the maximum sum of any subarray of size k.
+
+Time Complexity: O(n), where n is the length of the array.
+
+Longest Substring Without Repeating Characters:
+
+Find the longest substring without repeating characters.
+
+Time Complexity: O(n).
+
+Minimum Size Subarray Sum:
+
+Find the minimum length of a subarray whose sum is greater than or equal to a given value s.
+
+Time Complexity: O(n).
+
+Longest Subarray with At Most K Distinct Elements:
+
+Find the longest subarray with at most K distinct elements.
+
+Time Complexity: O(n).
+
+Key Benefits:
+Efficiency: Reduces time complexity from O(n^2) (brute force) to O(n).
+
+Space Efficiency: Typically requires O(1) extra space or O(k), depending on the problem.
+
+The sliding window technique is widely used in problems where subarrays or substrings need to be processed efficiently without re-evaluating the entire dataset multiple times.
+
+
+
+
