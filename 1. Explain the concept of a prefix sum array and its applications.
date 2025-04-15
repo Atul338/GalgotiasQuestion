@@ -1,0 +1,10 @@
+A prefix sum array is a data structure where each element stores the sum of all preceding elements in the original array, up to that index. Here's a concise breakdown:
+
+Concept:
+Given an array arr, a prefix sum array prefixSum is created.
+prefixSum[i] holds the sum of arr[0] to arr[i].
+Applications:
+Range sum queries: Efficiently calculating the sum of elements within any subarray.
+Image processing: Used in integral image calculations.
+Dynamic programming: it is used as a sub routine in many dynamic programming solutions.
+Algorithmic problem solving: used to optimize solutions for various problems that involve subarray sums.
