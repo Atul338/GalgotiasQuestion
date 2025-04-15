@@ -1,0 +1,55 @@
+Algorithm:
+Calculate the total sum of the array.
+
+Initialize leftSum to 0.
+
+For each index i in the array:
+
+Compute rightSum = totalSum - leftSum - arr[i].
+
+If leftSum == rightSum, return true (array can be split).
+
+Otherwise, update leftSum += arr[i].
+
+If no split is found after iterating through the array, return false
+
+CODE:
+public class SplitArray {
+
+   
+    public static boolean canSplitArray(int[] arr) {
+        int totalSum = 0;
+        int leftSum = 0;
+        
+        
+        for (int num : arr) {
+            totalSum += num;
+        }
+
+        
+        for (int i = 0; i < arr.length; i++) {
+            
+            int rightSum = totalSum - leftSum - arr[i];
+
+            
+            if (leftSum == rightSum) {
+                return true; 
+            }
+
+           
+            leftSum += arr[i];
+        }
+
+        return false;
+    }
+
+    public static void main(String[] args) {
+        int[] arr1 = {1, 2, 3, 3};
+        System.out.println("Can the array be split? " + canSplitArray(arr1));
+    }
+}
+
+
+Time Complexity: O(n)
+
+Space Complexity: O(1)
